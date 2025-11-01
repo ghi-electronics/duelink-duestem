@@ -1,6 +1,6 @@
-# DUELink Holiday Tree
+# DUELink DueSTEM
 
-This page includes many demo programs/patterns that you can load onto your DUELink [Holiday Tree](https://www.duelink.com/docs/products/sptree-b)
+This page includes many demo programs/patterns that you can load onto your DUELink [DueSTEM](https://www.duelink.com/docs/products/mcduestem-b)
 
 ![DueSTEM](./img/mcduestem-b-1.png)
 
