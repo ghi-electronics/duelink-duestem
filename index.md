@@ -34,6 +34,11 @@ To load a project: **Click** ➡ **Connect** ➡ **Run**!
     <td><a href="https://microblocks.fun/run/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/demo.ubp" target="_blank">Default Project Demo</a></td>
     <td>This is the default demo.</td>
   </tr>
+  <tr>
+    <td><a href="https://www.youtube.com/watch?v=GflXmnGSey4" target="_blank"><img src="https://img.youtube.com/vi/GflXmnGSey4/1.jpg"></a></td>
+    <td><a href="https://microblocks.fun/run/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/color-selector.ubp" target="_blank">Color Selector</a></td>
+    <td>What is your favorite color? Use the left button to pick one of the three primary colors (Red/Green/Blue) then use up and down to change the levels.</td>
+  </tr>
 </table>
 
 
