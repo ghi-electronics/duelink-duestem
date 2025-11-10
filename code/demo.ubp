@@ -8,7 +8,7 @@ script 86 66 {
 whenStarted
 x = 64
 bullet = -10
-pos = -70
+pos = -80
 forever {
   x = (minimum 118 (maximum x 0))
   bullet += -5
@@ -65,6 +65,9 @@ script 214 763 ('[data:joinStrings]' 'Light: ' ' ')
 script 698 819 {
 whenCondition (dueSTEM_button 'down')
 pos += 10
+if (pos > 80) {
+  pos = -80
+}
 setServoAngle 6 pos
 waitUntil (not (dueSTEM_button 'down'))
 }
