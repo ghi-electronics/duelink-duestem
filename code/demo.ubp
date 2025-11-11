@@ -4,7 +4,7 @@ version 1 0
 description ''
 variables x bullet pos 
 
-script 86 66 {
+script 86 82 {
 whenStarted
 x = 64
 bullet = -10
@@ -30,28 +30,28 @@ forever {
   tinyOLED_drawCircle (64 + (dueSTEM_tilt 'x')) (32 + (dueSTEM_tilt 'y')) 3 true true
   comment 'Show light and temp'
   tinyOLED_drawString ('[data:join]' 'Light: ' (dueSTEM_light) '%') 0 0 true
-  tinyOLED_drawString ('[data:join]' 'Temp: ' (dueSTEM_temperature) 'c') 70 0 true
+  tinyOLED_drawString ('[data:join]' 'Temp: ' ((dueSTEM_temperature) / 10) 'c') 70 0 true
   tinyOLED_showUpdates
 }
 }
 
-script 698 94 {
+script 698 110 {
 whenCondition (dueSTEM_button 'left')
 x += -1
 }
 
-script 690 217 {
+script 690 233 {
 whenCondition (dueSTEM_button 'right')
 x += 1
 }
 
-script 700 350 {
+script 700 366 {
 whenCondition (dueSTEM_button 'up')
 bullet = 60
 waitUntil (not (dueSTEM_button 'up'))
 }
 
-script 698 519 {
+script 698 535 {
 whenStarted
 comment 'Show random colors'
 forever {
@@ -60,10 +60,13 @@ forever {
 }
 }
 
-script 214 763 ('[data:joinStrings]' 'Light: ' ' ')
+script 214 779 ('[data:joinStrings]' 'Light: ' ' ')
 
-script 698 819 {
+script 698 835 {
 whenCondition (dueSTEM_button 'down')
+}
+
+script 645 916 {
 pos += 10
 if (pos > 80) {
   pos = -80
@@ -75,7 +78,7 @@ waitUntil (not (dueSTEM_button 'down'))
 
 module 'DUELink Edu'
 author DUELink
-version 1 5 
+version 1 6 
 choices dueSTEM_clipItPad A B left right up down P1 P2 P3 
 choices dueSTEM_buttonName left right up down 
 choices dueSTEM_axis x y z 
@@ -95,14 +98,14 @@ Touch sensing works only on pins with capacitive touch circuits including pins 0
 variables dueSTEM_accelAddr 
 
   spec 'r' 'dueSTEM_light' 'due light level'
-  spec 'r' 'dueSTEM_touched' 'due pin _ touched?' 'num' 1
+  spec 'r' 'dueSTEM_touched' 'due pin _ touched' 'num' 1
   spec 'r' 'dueSTEM_buzzerPin' 'due buzzer pin'
   spec 'r' '[misc:dueLinkPID]' 'due PID'
   space
   spec ' ' 'dueSTEM_setLED' 'DueSTEM bulb red _ green _ blue _ (0-1000)' 'auto auto auto' 100 0 200
-  spec 'r' 'dueSTEM_button' 'DueSTEM _ button?' 'menu.dueSTEM_buttonName' 'left'
+  spec 'r' 'dueSTEM_button' 'DueSTEM _ button' 'menu.dueSTEM_buttonName' 'left'
   spec 'r' 'dueSTEM_tilt' 'DueSTEM tilt _' 'menu.dueSTEM_axis' 'x'
-  spec 'r' 'dueSTEM_temperature' 'DueSTEM temperature'
+  spec 'r' 'dueSTEM_temperature' 'DueSTEM temperature (x10)'
   space
   spec 'r' 'dueSTEM_clipitTouched' 'Clipit pad _ touched : threshold _' 'menu.dueSTEM_clipItPad num' 'A' 100
   space
@@ -206,8 +209,8 @@ to dueSTEM_setLED r g b {
 
 to dueSTEM_temperature {
   if ((boardType) != 'DueSTEM') {return 0}
-  local 'mVx10' ((33000 * (analogReadOp 9)) / 1023)
-  return ((mVx10 - 4000) / 195)
+  local 'mVx10' ((330000 * (analogReadOp 9)) / 1023)
+  return ((mVx10 - 40000) / 195)
 }
 
 to dueSTEM_tilt axis {
@@ -354,9 +357,11 @@ to stopServo which {
 
 module 'Tiny OLED' Output
 author MicroBlocks
-version 1 4 
+version 1 5 
 description 'Tiny graphics library for a 128x64 pixel monochrome OLED display with a SSD1306 controller.
+
 Useful on boards with very limited code store space such as the DUELink PixoBit.
+
 '
 variables _tinyOLED_buffer _tinyOLED_hideUpdates 
 
@@ -371,9 +376,13 @@ variables _tinyOLED_buffer _tinyOLED_hideUpdates
   space
   spec ' ' 'tinyOLED_drawImage' 'draw image _ x _ y _ : scale _' 'str num num num' '' 0 0 1
   spec 'r' 'tinyOLED_image' 'image _' 'str' '00000
+
 01010
+
 00000
+
 10001
+
 01110'
   space
   spec ' ' 'tinyOLED_setBrightness' 'set tiny OLED brightness _' 'menu.range:1-5' 4
@@ -445,6 +454,9 @@ to '_tinyOLED_hline' startX endX y white {
   if (or (y < 0) (y > 63)) {
     return 0
   }
+  if (or (endX < 0) (startX > 127)) {
+    return 0
+  }
   startX = (maximum 0 (minimum startX 127))
   endX = (maximum 0 (minimum endX 127))
   local 'byteIndex' ((startX + ((y / 8) * 128)) + 1)
@@ -469,11 +481,17 @@ to '_tinyOLED_init' {
 
 to '_tinyOLED_setPixel' x y white {
   comment 'Set the value of pixel at x,y.
+
 Ranges:
+
   x: 0-127
+
   y: 0-63
+
   byteIndex: 1-1024
+
   bitIndex: 0-7
+
 '
   comment 'Check ranges'
   if (or (x < 0) (x > 127)) {
@@ -550,6 +568,7 @@ to tinyOLED_drawCircle cx cy r fill white {
 
 to tinyOLED_drawImage imageString x y optionalScale {
   comment 'Draw an image at the given position. An image is represented by a multi-line string
+
 of 0 and 1 characters where each line is one row of the image. 1 means that pixel on (lit).'
   '_tinyOLED_init'
   local 'scale' (argOrDefault 4 1)
@@ -688,9 +707,13 @@ to tinyOLED_setResetPin resetPin {
     waitMillis 1
   }
   comment 'Minimal initialization commands:
+
 A1     - Horizontal flip (A0 or A1)
+
 C8     - Vertical flip (C0 or C8)
+
 8D,14  - Enable charge pump
+
 AF     - Display on'
   '_tinyOLED_cmd' 'A1,C8,8D,14,AF'
 }
