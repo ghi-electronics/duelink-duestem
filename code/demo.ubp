@@ -2,13 +2,15 @@ module main
 author unknown
 version 1 0 
 description ''
-variables x bullet pos 
+variables x bullet pos 'circle x' 'circle y' 
 
-script 86 82 {
+script 86 66 {
 whenStarted
 x = 64
 bullet = -10
 pos = -80
+'circle x' = 64
+bullet = 32
 forever {
   x = (minimum 118 (maximum x 0))
   bullet += -5
@@ -27,7 +29,11 @@ forever {
 11011
 10001') x 55 2
   comment 'Show accel'
-  tinyOLED_drawCircle (64 + (dueSTEM_tilt 'x')) (32 + (dueSTEM_tilt 'y')) 3 true true
+  'circle x' += (dueSTEM_tilt 'x')
+  'circle y' += (dueSTEM_tilt 'y')
+  'circle x' = (minimum 118 (maximum (v 'circle x') 0))
+  'circle y' = (minimum 60 (maximum (v 'circle y') 0))
+  tinyOLED_drawCircle ((v 'circle x') + 2) ((v 'circle y') + 2) 3 true true
   comment 'Show light and temp'
   tinyOLED_drawString ('[data:join]' 'Light: ' (dueSTEM_light) '%') 0 0 true
   tinyOLED_drawString ('[data:join]' 'Temp: ' ((dueSTEM_temperature) / 10) 'c') 70 0 true
@@ -35,23 +41,23 @@ forever {
 }
 }
 
-script 698 110 {
+script 698 94 {
 whenCondition (dueSTEM_button 'left')
 x += -1
 }
 
-script 690 233 {
+script 690 217 {
 whenCondition (dueSTEM_button 'right')
 x += 1
 }
 
-script 700 366 {
+script 700 350 {
 whenCondition (dueSTEM_button 'up')
 bullet = 60
 waitUntil (not (dueSTEM_button 'up'))
 }
 
-script 698 535 {
+script 698 519 {
 whenStarted
 comment 'Show random colors'
 forever {
@@ -60,13 +66,8 @@ forever {
 }
 }
 
-script 214 779 ('[data:joinStrings]' 'Light: ' ' ')
-
-script 698 835 {
+script 698 819 {
 whenCondition (dueSTEM_button 'down')
-}
-
-script 645 916 {
 pos += 10
 if (pos > 80) {
   pos = -80
