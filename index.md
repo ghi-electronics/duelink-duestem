@@ -8,8 +8,9 @@ This page is a `Getting Started` page for `DUELink DueSTEM`. The full product de
 
 <p style="text-align:center;">
 Don't have a DUELink DueSTEM yet? Get yours today!<br>
-<a href="/" target="_blank"><img src="./img/amazon-btn.png" alt="Amazon button" width="200"></a>
+<a href="#" target="_blank"><img src="./img/amazon-btn.png" alt="Amazon button" width="200"></a>
 <br>
+</p>
 
 Power up DueSTEM using a PC, phone charger, or power bank and enjoy the preloaded demo. Then use any computer to load one of the demo projects below as is, or **change it** any way you like!
 
