@@ -1,11 +1,8 @@
-<div style="text-align:center;">
+<p style="text-align:center;">
 <img src="./img/duelinklogo.png" alt="DUELink logo">
-</div>
+</p>
 
 # DUELink DueSTEM
-
-
-
 
 ![DueSTEM](./img/mcduestem-b-1.png)
 
