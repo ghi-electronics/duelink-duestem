@@ -1,9 +1,10 @@
 <div style="text-align:center;">
 <img src="./img/duelinklogo.png" alt="DUELink logo">
+</div>
 
 # DUELink DueSTEM
 
-</div>
+
 
 
 ![DueSTEM](./img/mcduestem-b-1.png)
