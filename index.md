@@ -1,6 +1,10 @@
-<p style="text-align:center;"><img src="./img/duelinklogo.png" alt="DUELink logo"></p>
+<div style="text-align:center;">
+<img src="./img/duelinklogo.png" alt="DUELink logo">
 
 # DUELink DueSTEM
+
+</div>
+
 
 ![DueSTEM](./img/mcduestem-b-1.png)
 
@@ -10,9 +14,6 @@ This page is a `Getting Started` page for `DUELink DueSTEM`. The full product de
 Don't have a DUELink DueSTEM yet? Get yours today!<br>
 <a href="/" target="_blank"><img src="./img/amazon-btn.png" alt="Amazon button" width="200"></a>
 <br>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/D4073veneWI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</p>
 
 Power up DueSTEM using a PC, phone charger, or power bank and enjoy the preloaded demo. Then use any computer to load one of the demo projects below as is, or **change it** any way you like!
 
@@ -32,7 +33,7 @@ To load a project: **Click** ➡ **Connect** ➡ **Run**!
   <tr>
     <td><a href="https://www.youtube.com/watch?v=GflXmnGSey4" target="_blank"><img src="https://img.youtube.com/vi/GflXmnGSey4/1.jpg" alt="Default Project Demo"></a></td>
     <td><a href="https://microblocks.fun/run/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/demo.ubp" target="_blank">Default Project Demo</a></td>
-    <td>This is the default demo.</td>
+    <td>This is the default demo. Use buttons to move the spaceship left and right and up to shoot. Light and temperature show on the display. Use down to move a servo.</td>
   </tr>
   <tr>
     <td><a href="https://www.youtube.com/watch?v=GflXmnGSey4" target="_blank"><img src="https://img.youtube.com/vi/GflXmnGSey4/1.jpg"></a></td>
