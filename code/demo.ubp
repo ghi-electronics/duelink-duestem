@@ -4,7 +4,7 @@ version 1 0
 description ''
 variables x bullet pos 'circle x' 'circle y' 
 
-script 86 66 {
+script 86 82 {
 whenStarted
 x = 64
 bullet = -10
@@ -41,23 +41,23 @@ forever {
 }
 }
 
-script 698 94 {
+script 698 110 {
 whenCondition (dueSTEM_button 'left')
 x += -1
 }
 
-script 690 217 {
+script 690 233 {
 whenCondition (dueSTEM_button 'right')
 x += 1
 }
 
-script 700 350 {
+script 700 366 {
 whenCondition (dueSTEM_button 'up')
 bullet = 60
 waitUntil (not (dueSTEM_button 'up'))
 }
 
-script 698 519 {
+script 698 535 {
 whenStarted
 comment 'Show random colors'
 forever {
@@ -66,13 +66,14 @@ forever {
 }
 }
 
-script 698 819 {
+script 698 835 {
 whenCondition (dueSTEM_button 'down')
 pos += 10
 if (pos > 80) {
   pos = -80
 }
 setServoAngle 6 pos
+setServoAngle 5 pos
 waitUntil (not (dueSTEM_button 'down'))
 }
 
