@@ -12,6 +12,8 @@ Don't have a DUELink DueSTEM yet? Get yours today!<br>
 <br>
 </p>
 
+---
+
 Power up DueSTEM using a PC, phone charger, or power bank and enjoy the preloaded demo. Then use any computer to load one of the demo projects below as is, or **change it** any way you like!
 
 To load a project: **Click** ➡ **Connect** ➡ **Run**!
@@ -29,22 +31,22 @@ To load a project: **Click** ➡ **Connect** ➡ **Run**!
   </tr>
   <tr>
     <td><a href="https://www.youtube.com/watch?v=GflXmnGSey4" target="_blank"><img src="https://img.youtube.com/vi/GflXmnGSey4/1.jpg" alt="Default Project Demo"></a></td>
-    <td><a href="https://microblocks.fun/run/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/demo.ubp" target="_blank">Default Project Demo</a></td>
+    <td><a href="https://microblocks.fun/run-pilot/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/demo.ubp" target="_blank">Default Project Demo</a></td>
     <td>This is the default demo. Use buttons to move the spaceship left and right and up to shoot. Light and temperature show on the display. Use down to move a servo.</td>
   </tr>
   <tr>
     <td><a href="https://www.youtube.com/watch?v=GflXmnGSey4" target="_blank"><img src="https://img.youtube.com/vi/GflXmnGSey4/1.jpg"></a></td>
-    <td><a href="https://microblocks.fun/run/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/feed-me.ubp" target="_blank">Feed Me</a></td>
+    <td><a href="https://microblocks.fun/run-pilot/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/feed-me.ubp" target="_blank">Feed Me</a></td>
     <td>You have 10 seconds to eat as many fruits as you can!</td>
   </tr>
   <tr>
     <td><a href="https://www.youtube.com/watch?v=GflXmnGSey4" target="_blank"><img src="https://img.youtube.com/vi/GflXmnGSey4/1.jpg"></a></td>
-    <td><a href="https://microblocks.fun/run/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/hearing-test.ubp" target="_blank">Hearing Test</a></td>
+    <td><a href="https://microblocks.fun/run-pilot/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/hearing-test.ubp" target="_blank">Hearing Test</a></td>
     <td>How good is your hearing? Hold the right button and see how far you can go.</td>
   </tr>
   <tr>
     <td><a href="https://www.youtube.com/watch?v=GflXmnGSey4" target="_blank"><img src="https://img.youtube.com/vi/GflXmnGSey4/1.jpg"></a></td>
-    <td><a href="https://microblocks.fun/run/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/color-selector.ubp" target="_blank">Color Selector</a></td>
+    <td><a href="https://microblocks.fun/run-pilot/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/color-selector.ubp" target="_blank">Color Selector</a></td>
     <td>What is your favorite color? Use the left button to pick one of the three primary colors (Red/Green/Blue) then use up and down to change the levels.</td>
   </tr>
 </table>
