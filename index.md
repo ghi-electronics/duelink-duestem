@@ -2,7 +2,8 @@
 
 # DUELink DueSTEM
 
-![DueSTEM](./img/mcduestem-b-1.png)
+<p style="text-align: center"><img src="./img/mcduestem-b-1.webp"></p>
+
 
 This page is a `Getting Started` page for `DUELink DueSTEM`. The full product details are [here](https://www.duelink.com/docs/products/mcduestem-b) on the main DUELink website. Are you an educator? See how DUELink can help you [here](https://www.duelink.com/docs/educators).
 

@@ -4,7 +4,7 @@ version 1 0
 description ''
 variables x bullet pos 'circle x' 'circle y' 
 
-script 86 82 {
+script 100 100 {
 whenStarted
 x = 64
 bullet = -10
@@ -41,23 +41,23 @@ forever {
 }
 }
 
-script 698 110 {
+script 712 128 {
 whenCondition (dueSTEM_button 'left')
 x += -1
 }
 
-script 690 233 {
+script 704 251 {
 whenCondition (dueSTEM_button 'right')
 x += 1
 }
 
-script 700 366 {
+script 714 384 {
 whenCondition (dueSTEM_button 'up')
 bullet = 60
 waitUntil (not (dueSTEM_button 'up'))
 }
 
-script 698 535 {
+script 712 553 {
 whenStarted
 comment 'Show random colors'
 forever {
@@ -66,7 +66,7 @@ forever {
 }
 }
 
-script 698 835 {
+script 712 853 {
 whenCondition (dueSTEM_button 'down')
 pos += 10
 if (pos > 80) {
@@ -79,27 +79,30 @@ waitUntil (not (dueSTEM_button 'down'))
 
 
 module 'DUELink Edu'
-author DUELink
-version 1 8 
-choices dueSTEM_clipItPad A B left right up down P1 P2 P3 
+author MicroBlocks
+version 1 10 
+choices dueSTEM_pianoPad left right C 'C#' D 'D#' E F 'F#' G 'G#' A 'A#' B 'High C' 
+choices dueSTEM_clipItPad A B left right up down 
 choices dueSTEM_buttonName left right up down 
 choices dueSTEM_axis x y z 
 description 'Library for DUELink Educational boards: CincoBit, PixoBit, ClipIt, and DueSTEM.
 
 The "due PID" works on all DUELink boards.
-Blocks labeled "dueSTEM" work only on the DUEStem board.
+Blocks labeled "dueSTEM" work only on the DueSTEM board.
 
 Touch sensing works only on pins with capacitive touch circuits including pins 0, 1, 2 of the CincoBit and PixoBit and all but the SCL/SDA pins of the ClipIt.
 '
-variables dueSTEM_accelAddr 
+variables dueSTEM_accelAddr dueSTEM_touchAdjustments 
 
-  spec 'r' 'dueSTEM_light' 'due light level'
+  spec 'r' 'dueSTEM_light' 'due light level (0-1000)'
+  spec 'r' 'dueSTEM_LDR_button' 'due LDR button'
   spec 'r' 'dueSTEM_buzzerPin' 'due buzzer pin'
   spec 'r' 'dueSTEM_PID' 'due PID'
   space
   spec 'r' 'dueSTEM_touched' 'due pin _ touched' 'num' 1
   spec ' ' 'dueSTEM_waitForRelease' 'due wait for pin _ release' 'auto' 1
   spec 'r' 'dueSTEM_clipitPadPin' 'Clipit _ pin' 'menu.dueSTEM_clipItPad' 'A'
+  spec 'r' 'dueSTEM_pianoPadPin' 'Piano _ pin' 'menu.dueSTEM_pianoPad' 'C'
   space
   spec ' ' 'dueSTEM_setLED' 'DueSTEM bulb red _ green _ blue _ (0-1000)' 'auto auto auto' 100 0 200
   spec 'r' 'dueSTEM_button' 'DueSTEM _ button' 'menu.dueSTEM_buttonName' 'left'
@@ -108,8 +111,10 @@ variables dueSTEM_accelAddr
   space
   spec ' ' '_dueSTEM_accelInit' '_dueSTEM_accelInit'
   spec 'r' '_dueSTEM_accelRead16BitReg' '_dueSTEM_accelRead16BitReg _' 'auto' 13
-  spec 'r' '[misc:dueLinkPID]' 'obsolete due PID'
-  spec 'r' 'dueSTEM_clipitTouched' 'obsolete Clipit pad _ touched : threshold _' 'menu.dueSTEM_clipItPad num' 'A' 100
+  spec 'r' '_dueSTEM_adjustmentForPin' '_dueSTEM_adjustmentForPin _' 'num' 1
+  spec 'r' '_dueSTEM_dischargeTime' '_dueSTEM_dischargeTime _' 'num' 1
+  spec 'r' '[misc:dueLinkPID]' 'obsolete obsolete due PID'
+  spec 'r' 'dueSTEM_clipitTouched' 'obsolete obsolete Clipit pad _ touched : threshold _' 'menu.dueSTEM_clipItPad num' 'A' 100
 
 to '_dueSTEM_accelInit' {
   comment 'MC3216
@@ -136,6 +141,36 @@ to '_dueSTEM_accelRead16BitReg' reg {
   local '16bit' (((at 2 buf) << 8) | (at 1 buf))
   '16bit' = (((v '16bit') << 15) >> 15)
   return ((100 * (v '16bit')) / 255)
+}
+
+to '_dueSTEM_adjustmentForPin' pin {
+  if (dueSTEM_touchAdjustments == 0) {dueSTEM_touchAdjustments = (newList (digitalPins) -1)}
+  local 'result' (at (pin + 1) dueSTEM_touchAdjustments)
+  if (result >= 0) {
+    return result
+  }
+  local 'total usecs' 0
+  repeat 80 {
+    'total usecs' += ('_dueSTEM_dischargeTime' pin)
+  }
+  result = (maximum 0 (minimum (((v 'total usecs') / 80) - 99) 30))
+  atPut (pin + 1) dueSTEM_touchAdjustments result
+  return result
+}
+
+to '_dueSTEM_dischargeTime' pin {
+  comment 'Charge up pin'
+  digitalWriteOp pin true
+  local 'startT' (microsOp)
+  waitUntil (not (digitalReadOp pin))
+  local 'usecs' (microsSince startT)
+  digitalWriteOp pin true
+  return usecs
+}
+
+to dueSTEM_LDR_button {
+  if (or ((boardType) == 'CincoBit') ((boardType) == 'PixoBit')) {return (buttonA)}
+  return (digitalReadOp 20 'down')
 }
 
 to dueSTEM_PID {
@@ -208,7 +243,42 @@ to dueSTEM_clipitPadPin padName {
 }
 
 to dueSTEM_light {
-  return ('[display:lightLevel]')
+  return (minimum ('[display:lightLevel]') 1000)
+}
+
+to dueSTEM_pianoPadPin padName {
+  if ('left' == padName) {
+    return 11
+  } ('right' == padName) {
+    return 7
+  } ('C' == padName) {
+    return 23
+  } ('C#' == padName) {
+    return 19
+  } ('D' == padName) {
+    return 12
+  } ('D#' == padName) {
+    return 13
+  } ('E' == padName) {
+    return 14
+  } ('F' == padName) {
+    return 15
+  } ('F#' == padName) {
+    return 16
+  } ('G' == padName) {
+    return 18
+  } ('G#' == padName) {
+    return 24
+  } ('A' == padName) {
+    return 10
+  } ('A#' == padName) {
+    return 9
+  } ('B' == padName) {
+    return 8
+  } ('High C' == padName) {
+    return 17
+  }
+  return 23
 }
 
 to dueSTEM_setLED r g b {
@@ -237,6 +307,7 @@ to dueSTEM_tilt axis {
 }
 
 to dueSTEM_touched pin {
+  local 'touch adjustment' ('_dueSTEM_adjustmentForPin' pin)
   comment 'Charge up pin'
   digitalWriteOp pin true
   comment 'Switch pin to input mode. Capacitor starts
@@ -249,8 +320,8 @@ high after that time, it is because it is being touched, thus increasing
 the discharge time of the total effective capacitance of the pin.'
   waitMicros 30
   waitMicros 30
-  waitMicros 30
-  waitMicros 30
+  waitMicros 2
+  waitMicros (v 'touch adjustment')
   return (digitalReadOp pin)
 }
 
@@ -382,11 +453,9 @@ to stopServo which {
 
 module 'Tiny OLED' Output
 author MicroBlocks
-version 1 5 
+version 1 6 
 description 'Tiny graphics library for a 128x64 pixel monochrome OLED display with a SSD1306 controller.
-
-Useful on boards with very limited code store space such as the DUELink PixoBit.
-
+Useful on boards with very limited code store space such as the DUELink PixoBit and DueSTEM.
 '
 variables _tinyOLED_buffer _tinyOLED_hideUpdates 
 
@@ -401,13 +470,9 @@ variables _tinyOLED_buffer _tinyOLED_hideUpdates
   space
   spec ' ' 'tinyOLED_drawImage' 'draw image _ x _ y _ : scale _' 'str num num num' '' 0 0 1
   spec 'r' 'tinyOLED_image' 'image _' 'str' '00000
-
 01010
-
 00000
-
 10001
-
 01110'
   space
   spec ' ' 'tinyOLED_setBrightness' 'set tiny OLED brightness _' 'menu.range:1-5' 4
@@ -506,17 +571,11 @@ to '_tinyOLED_init' {
 
 to '_tinyOLED_setPixel' x y white {
   comment 'Set the value of pixel at x,y.
-
 Ranges:
-
   x: 0-127
-
   y: 0-63
-
   byteIndex: 1-1024
-
   bitIndex: 0-7
-
 '
   comment 'Check ranges'
   if (or (x < 0) (x > 127)) {
@@ -593,7 +652,6 @@ to tinyOLED_drawCircle cx cy r fill white {
 
 to tinyOLED_drawImage imageString x y optionalScale {
   comment 'Draw an image at the given position. An image is represented by a multi-line string
-
 of 0 and 1 characters where each line is one row of the image. 1 means that pixel on (lit).'
   '_tinyOLED_init'
   local 'scale' (argOrDefault 4 1)
@@ -704,6 +762,7 @@ to tinyOLED_drawStringBig s x y white {
       }
       x += 2
     }
+    x += 1
   }
   '_tinyOLED_updateDisplay'
 }
@@ -732,13 +791,9 @@ to tinyOLED_setResetPin resetPin {
     waitMillis 1
   }
   comment 'Minimal initialization commands:
-
 A1     - Horizontal flip (A0 or A1)
-
 C8     - Vertical flip (C0 or C8)
-
 8D,14  - Enable charge pump
-
 AF     - Display on'
   '_tinyOLED_cmd' 'A1,C8,8D,14,AF'
 }
