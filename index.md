@@ -9,7 +9,7 @@ This page is a `Getting Started` page for `DUELink DueSTEM`. The full product de
 
 <p style="text-align:center;">
 Don't have a DUELink DueSTEM yet? Get yours today!<br>
-<a href="#" target="_blank"><img src="./img/amazon-btn.png" alt="Amazon button" width="200"></a>
+<a href="https://www.amazon.com/dp/B0FY76TL6C?maas=maas_adg_472929B8E15EF5939301C03990EBAAD6_afap_abs&ref_=aa_maas&tag=maas" target="_blank"><img src="./img/amazon-btn.png" alt="Amazon button" width="200"></a>
 <br>
 </p>
 
