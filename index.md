@@ -31,22 +31,22 @@ To load a project: **Click** ➡ **Connect** ➡ **Run**!
     <th>Functionality</th>
   </tr>
   <tr>
-    <td><a href="https://www.youtube.com/watch?v=GflXmnGSey4" target="_blank"><img src="https://img.youtube.com/vi/GflXmnGSey4/1.jpg" alt="Default Project Demo"></a></td>
+    <td><a href="https://www.youtube.com/watch?v=frgzxFz_6Q4" target="_blank"><img src="https://img.youtube.com/vi/frgzxFz_6Q4/1.jpg" alt="Default Project Demo"></a></td>
     <td><a href="https://microblocks.fun/run-pilot/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/demo.ubp" target="_blank">Default Project Demo</a></td>
     <td>This is the default demo. Use buttons to move the spaceship left and right and up to shoot. Light and temperature show on the display. Use down to move a servo.</td>
   </tr>
   <tr>
-    <td><a href="https://www.youtube.com/watch?v=GflXmnGSey4" target="_blank"><img src="https://img.youtube.com/vi/GflXmnGSey4/1.jpg"></a></td>
+    <td><a href="https://www.youtube.com/watch?v=z1U3ILlUyvE" target="_blank"><img src="https://img.youtube.com/vi/z1U3ILlUyvE/1.jpg"></a></td>
     <td><a href="https://microblocks.fun/run-pilot/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/feed-me.ubp" target="_blank">Feed Me</a></td>
-    <td>You have 10 seconds to eat as many fruits as you can!</td>
+    <td>This demo uses the on-board accelerometer. You have 10 seconds to eat as many fruits as you can!</td>
   </tr>
   <tr>
-    <td><a href="https://www.youtube.com/watch?v=GflXmnGSey4" target="_blank"><img src="https://img.youtube.com/vi/GflXmnGSey4/1.jpg"></a></td>
+    <td><a href="https://www.youtube.com/watch?v=wRhcOToc0Rw" target="_blank"><img src="https://img.youtube.com/vi/wRhcOToc0Rw/1.jpg"></a></td>
     <td><a href="https://microblocks.fun/run-pilot/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/hearing-test.ubp" target="_blank">Hearing Test</a></td>
     <td>How good is your hearing? Hold the right button and see how far you can go.</td>
   </tr>
   <tr>
-    <td><a href="https://www.youtube.com/watch?v=GflXmnGSey4" target="_blank"><img src="https://img.youtube.com/vi/GflXmnGSey4/1.jpg"></a></td>
+    <td><a href="https://www.youtube.com/watch?v=60L_xUhZyOE" target="_blank"><img src="https://img.youtube.com/vi/60L_xUhZyOE/1.jpg"></a></td>
     <td><a href="https://microblocks.fun/run-pilot/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/color-selector.ubp" target="_blank">Color Selector</a></td>
     <td>What is your favorite color? Use the left button to pick one of the three primary colors (Red/Green/Blue) then use up and down to change the levels.</td>
   </tr>
