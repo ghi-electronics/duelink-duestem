@@ -51,7 +51,7 @@ To load a project: **Click** ➡ **Connect** ➡ **Run**!
     <td>What is your favorite color? Use the left button to pick one of the three primary colors (Red/Green/Blue) then use up and down to change the levels.</td>
   </tr>
      <tr>
-    <td><a href="https://www.youtube.com/watch?v=SRl_iSj7iYo" target="_blank"><img src="https://img.youtube.com/vi/SRl_iSj7iYo/1.jpg"></a></td>
+    <td><a href="https://www.youtube.com/watch?v=HAfcLdrLvSc" target="_blank"><img src="https://img.youtube.com/vi/HAfcLdrLvSc/1.jpg"></a></td>
     <td><a href="https://microblocks.fun/run-pilot/microblocks.html?project=https://raw.githubusercontent.com/ghi-electronics/duelink-duestem/refs/heads/main/code/disylink-snowy.ubp" target="_blank">Snowy Daisylink!</a></td>
     <td>Control any other daisylinked modules, such as Snowy. Note that any Daisylinked module must be loaded with the provided DUELink firmware and the module's driver.</td>
   </tr>
